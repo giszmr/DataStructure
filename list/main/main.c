@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "linux_list.h"
+#include "../src/linux_list.h"
 
 #define NUM 10
 
