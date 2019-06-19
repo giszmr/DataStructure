@@ -10,6 +10,8 @@
 namespace DataStructureTest
 {
 	//reference: https://www.cnblogs.com/skywang12345/p/3610187.html
+	//<<Data Structures and Algorithm Analysis in C>> Chapter 6.4
+	// used case: priority queue.
 	class BinaryTree
 	{
 	public:

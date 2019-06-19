@@ -125,10 +125,12 @@
   <ItemGroup>
     <ClInclude Include="binary_tree.h" />
     <ClInclude Include="b_tree.h" />
+    <ClInclude Include="d_heap.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="binary_tree.cpp" />
     <ClCompile Include="b_tree.cpp" />
+    <ClCompile Include="d_heap.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

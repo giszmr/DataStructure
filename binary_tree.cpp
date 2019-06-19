@@ -46,9 +46,9 @@ void BinaryTree::MaxHeap_FilterDown(int idx)
 	int leftChildIdx = curIdx * 2 + 1;
 	int tmp = m_Heap.at(idx);
 
-	while (leftChildIdx < m_Heap.size())
+	while (leftChildIdx < (int)m_Heap.size())
 	{
-		if (leftChildIdx + 1 < m_Heap.size()
+		if (leftChildIdx + 1 < (int)m_Heap.size()    //if the value of "leftChildIdx" is "m_Heap.size()-1", then "leftChildIdx + 1" will overflow.
 			&& m_Heap.at(leftChildIdx) < m_Heap.at(leftChildIdx + 1))
 		{
 			leftChildIdx++;
