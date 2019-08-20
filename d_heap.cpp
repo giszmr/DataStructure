@@ -34,7 +34,7 @@ void DHeap::DHeap_Insert(int data)
 		return;
 	}
 
-	int idx = m_DHeap.size();
+	size_t idx = m_DHeap.size();
 	m_DHeap.resize(m_DHeap.size() + 1);
 	while (m_DHeap[(idx - 1) / m_Arity] > data)
 	{
@@ -52,15 +52,15 @@ bool DHeap::DHeap_DeleteMin(int &out)
 
 	out = m_DHeap[0];
 
-	int idx = 0;
-	int minChildIdx = 0;
+	size_t idx = 0;
+	size_t minChildIdx = 0;
 	int lastElement = m_DHeap[m_DHeap.size() - 1];
 	while (idx * m_Arity + 1 < m_DHeap.size())
 	{
 		minChildIdx = idx * m_Arity + 1;
 		//find the smallest in children
 		size_t i = 1;
-		int curMinChildIdx = minChildIdx;
+		size_t curMinChildIdx = minChildIdx;
 		while (i < m_Arity)
 		{
 			if (minChildIdx + i == m_DHeap.size()) break;
@@ -111,13 +111,13 @@ void DHeap::DHeap_InsertTest()
 	std::cout << "\n********DHeap_InsertTest*********" << std::endl;
 
 
-	for (size_t i = 0; i < 20; i++)
+	for (int i = 0; i < 20; i++)
 	{
 		DHeap_Insert(i);
 	}
 	Output(m_DHeap, "myDHeap");
 
-	for (size_t i = 5; i < 15; i++)
+	for (int i = 5; i < 15; i++)
 	{
 		DHeap_Insert(i);
 	}

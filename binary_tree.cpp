@@ -20,7 +20,7 @@ BinaryTree::~BinaryTree()
 
 void BinaryTree::MaxHeap_FilterUp()
 {
-	int curIdx = m_Heap.size() - 1;
+	int curIdx = (int)m_Heap.size() - 1;
 	int parIdx = (curIdx - 1) / 2;
 	int tmp = m_Heap.at(curIdx);
 
@@ -80,7 +80,7 @@ void BinaryTree::MaxHeap_Remove(int data)
 	*iter = *(m_Heap.end() - 1);
 	m_Heap.erase(m_Heap.end() - 1);
 	if (m_Heap.size() > 0)  //there is no use to filter down when size of m_Heap is 0.
-		MaxHeap_FilterDown(iter - m_Heap.begin());
+		MaxHeap_FilterDown((int)(iter - m_Heap.begin()));
 }
 
 

@@ -74,6 +74,9 @@ namespace DataStructureTest
 		Status PutVex(LGraph* pGraph, VertexType vertex1, VertexType vertex2);
 		Status InsertVex(LGraph* pGraph, VertexType vertex);
 		Status InsertArc(LGraph* pGraph, VertexType vertex1, VertexType vertex2);
+		Status DeleteVex(LGraph* pGraph, VertexType vertex);
+		Status DeleteArc(LGraph* pGraph, VertexType vertex1, VertexType vertex2);
+
 	private:
 		LGraph lg;
 		Status visisted[VERTEX_MAX_NUM + 1];

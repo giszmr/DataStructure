@@ -185,7 +185,7 @@ Status MyGraph::InsertArc(LGraph* pGraph, VertexType vertex1, VertexType vertex2
 	}
 
 	//If it's undirect graph, there is another path from vertex2 to vertex1
-	if (pGraph->kind = UDG)
+	if (pGraph->kind == UDG)
 	{
 		ArcNode* pArcNode = new ArcNode;
 		if (!pArcNode)
@@ -210,7 +210,71 @@ Status MyGraph::InsertArc(LGraph* pGraph, VertexType vertex1, VertexType vertex2
 		}
 	}
 
-	return Status();
+	return OK;
+}
+
+Status MyGraph::DeleteVex(LGraph* pGraph, VertexType vertex)
+{
+	return OK;
+}
+
+Status MyGraph::DeleteArc(LGraph* pGraph, VertexType vertex1, VertexType vertex2)
+{
+	int idx1 = LocateVex(pGraph, vertex1);
+	int idx2 = LocateVex(pGraph, vertex2);
+	ArcNode* pCurrArcNode = pGraph->vertexs[idx1].firstArc;
+	ArcNode* pArcNode = nullptr;
+	if(pCurrArcNode && pCurrArcNode->adjvex == idx2)
+	{
+		pGraph->vertexs[idx1].firstArc = pCurrArcNode->nextArc;
+		delete pCurrArcNode;
+	}
+	else
+	{
+		//suppose p1->p2->p3, and p2 is the target.
+		while (pCurrArcNode && pCurrArcNode->adjvex != idx2)
+		{
+			pArcNode = pCurrArcNode;   //reserve the one before the target
+			pCurrArcNode = pCurrArcNode->nextArc;
+		}
+
+		if (!pCurrArcNode)
+			return ERROR;
+		else
+		{
+			pArcNode->nextArc = pCurrArcNode->nextArc;   //eg: p1 -> p3
+			delete pCurrArcNode;   //delete p2;
+		}
+	}
+
+	if(pGraph->kind == UDG)
+	{
+		pCurrArcNode = pGraph->vertexs[idx2].firstArc;
+		if (pCurrArcNode && pCurrArcNode->adjvex == idx1)
+		{
+			pGraph->vertexs[idx2].firstArc = pCurrArcNode->nextArc;
+			delete pCurrArcNode;
+		}
+		else
+		{
+			while (pCurrArcNode && pCurrArcNode->adjvex != idx1)
+			{
+				pArcNode = pCurrArcNode;
+				pCurrArcNode = pCurrArcNode->nextArc;
+			}
+
+			if (!pCurrArcNode)
+				return ERROR;
+			else
+			{
+				pArcNode->nextArc = pCurrArcNode->nextArc;
+				delete pCurrArcNode;
+			}
+		}
+	}
+
+
+	return OK;
 }
 
 void MyGraph::OutputLGraph(LGraph* pGraph)
